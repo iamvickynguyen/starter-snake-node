@@ -1,7 +1,7 @@
 # Nodejs Battlesnake
 ## Flow:
 1. eat food until length is long enough (how long?) </br>
-while:
+while: </br>
 &nbsp;  2. find good position </br>
 &nbsp;  3. secure 1 food </br>
 &nbsp;  4. chase tail around the food, keep enough space to get out (how?)</br>
