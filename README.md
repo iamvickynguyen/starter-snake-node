@@ -26,7 +26,7 @@ When the length reaches 10, consider to kill other snakes if having chances </br
 &nbsp;  Cases: when going parallel and 1 cell ahead a snake, and that snake is next to/likely heading to the wall ==> create dead end for that snake. </br>
 &nbsp;  If offensive moves put the snake in danger (making snake go into dead end, get to closed to longer snakes, etc.) ==> back to defensive mode.
 Also, slowly the process of eating food, may consider to prevent other snakes to eat their safe foods if there's chance.
-Otherwise, secure a food and chasing its tail around it. (ideally length in this step: >=11)
+Otherwise, secure a food and chasing its tail around it. (ideally length in this step: >=11) </br>
 ........... </br>
 ....****... </br>
 ....*..*... </br>
