@@ -54,10 +54,10 @@ while: </br>
 <ul>
   <li> make a regtangle for now
 </ul>
-&nbsp;  5. eat it when blood <= 10 </br>
+<s>&nbsp;  5. eat it when blood <= 10 </br> </s>
 &nbsp;  6. kill others if we have a chance </br>
 <ul>
   <li> head collision if longer
-  <li> secure a food and chase tail already reduce our snakes' space
+  <li> secure a food and chase tail already reduce other snakes' space
 </ul>
 &nbsp;  7. if no available move, chase tail until death </br>
