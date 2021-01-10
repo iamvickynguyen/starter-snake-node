@@ -34,8 +34,8 @@ class Board {
         this.height = data.board.height;
         this.width = data.board.width;
         this.board = new Array(this.height).fill(SAFE).map(() => new Array(this.width).fill(SAFE));
-        this.snakes = data.snakes.map(snake => new Snake(snake));
-        this.food = this.setFoods(data.food);
+        this.snakes = data.board.snakes.map(snake => new Snake(snake));
+        this.food = this.setFoods(data.board.food);
         this.dirtyNodes = [];
         // TODO: init board weight and food
     }
