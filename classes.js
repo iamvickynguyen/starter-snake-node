@@ -52,16 +52,17 @@ class Board {
     }
 
     setFoods(food) {
-        foodPoints = []
-        snakeHeads = this.getSnakeHead();
+        let foodPoints = []
+        let snakeHeads = this.getSnakeHead().filter(s => { s.id !== this.mySnake.id });
         for (var i = 0; i < food.length; i++) {
-            foodPoint = new Point(food[i].x, food[i].y, FOOD);
+            let foodPoint = new Point(food[i].x, food[i].y, FOOD);
             for (var j = 0; j < snakeHeads; j++) {
-                foodPoint.weight += foodPoint.manhattan(snakeHeads) / 100;
+                foodPoint.weight -= foodPoint.manhattan(snakeHeads) / 100;
             }
-
+            foodPoint.weight += foodPoint.manhattan(this.mySnake.head.weight)
             foodPoints.push(foodPoint);
         }
+        return foodPoints;
     }
 
     setFoodEndPoints() {
@@ -81,7 +82,7 @@ class Board {
         const x = point.x;
         const y = point.y;
         const surroundingCoors = [[x + 1, y], [x, y - 1], [x - 1, y], [x, y + 1]]
-        return surroundingCoors.filter(coor => this.inBounds(coor[0], coor[1]) && this.board[coor[1]][coor[0]].weight !=== DANGER)
+        return surroundingCoors.filter(coor => this.inBounds(coor[0], coor[1]) && this.board[coor[1]][coor[0]].weight !== DANGER)
             .map(coor => this.board[coor[1]][coor[0]]);
     }
 

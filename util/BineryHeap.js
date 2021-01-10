@@ -181,10 +181,10 @@ function search(board, start, end) {
         for (var i = 0, il = neighbors.length; i < il; ++i) {
             var neighbor = neighbors[i];
 
-            if (neighbor.closed || neighbor.isWall()) {
-                // Not a valid node to process, skip to next neighbor.
-                continue;
-            }
+            // if (neighbor.closed || neighbor.isWall()) {
+            //     // Not a valid node to process, skip to next neighbor.
+            //     continue;
+            // }
 
             // The g score is the shortest distance from start to current node.
             // We need to check if the path we have arrived at this neighbor is the shortest one we have seen yet.
