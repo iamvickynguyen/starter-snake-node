@@ -41,10 +41,7 @@ class Board {
     }
 
     getSnakeHead() {
-        snakeHeads = [];
-
-
-        return snakeHeads;
+        return this.snakes.map(snake => snake.head);
     }
 
     setFoods(food) {
@@ -67,7 +64,7 @@ class Board {
         const x = point.x;
         const y = point.y;
         const surroundingCoors = [[x + 1, y], [x, y - 1], [x - 1, y], [x, y + 1]]
-        return surroundingCoors.filter(coor => this.inBounds(coor[0], coor[1]) && this.board[coor[1]][coor[0]].weight !=== DANGER)
+        return surroundingCoors.filter(coor => this.inBounds(coor[0], coor[1]) && this.board[coor[1]][coor[0]].weight !== DANGER)
             .map(coor => this.board[coor[1]][coor[0]]);
     }
 
