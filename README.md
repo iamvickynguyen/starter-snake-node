@@ -11,9 +11,15 @@ while: </br>
 &nbsp;  7. if no available move, chase tail until death </br>
 
 ## TO DO:
-1. How can we do it? (1/1/2021) </br>
-2. Implement algorithms? </br>
-3. Brainstorm edge cases (consider if flow is good enough)? (1/1/2021)
+<s>a. How can we do it? (1/1/2021) </br></s>
+<s>b. Brainstorm edge cases (consider if flow is good enough)? (1/1/2021)</s> </br>
+c. Implement algorithms? </br>
+<ol>
+  <li> class Board, Snake </li>
+  <li> A star </li>
+  <li> Put weight: longer snake head: 50, snake body: 20, cell around other snake bodies and longer snake heads: 50,
+</ol>
+ 
 
 ## Irene
 Using flood fill to find dead end and fill them </br>
@@ -26,13 +32,13 @@ When the length reaches 10, consider to kill other snakes if having chances </br
 &nbsp;  Cases: when going parallel and 1 cell ahead a snake, and that snake is next to/likely heading to the wall ==> create dead end for that snake. </br>
 &nbsp;  If offensive moves put the snake in danger (making snake go into dead end, get to closed to longer snakes, etc.) ==> back to defensive mode.
 Also, slowly the process of eating food, may consider to prevent other snakes to eat their safe foods if there's chance.
-Otherwise, secure a food and chasing its tail around it. (ideally length in this step: >=11)
-...........
-....****...
-....*..*...
-....*.#*...
-......@*...
-...........
+Otherwise, secure a food and chasing its tail around it. (ideally length in this step: >=11) </br>
+........... </br>
+....\*\*\*\*... </br>
+....\*..\*... </br>
+....\*.#\*... </br>
+......@\*... </br>
+........... </br>
 
 
 ## Vicky
@@ -48,10 +54,10 @@ while: </br>
 <ul>
   <li> make a regtangle for now
 </ul>
-&nbsp;  5. eat it when blood <= 10 </br>
+<s>&nbsp;  5. eat it when blood <= 10 </br> </s>
 &nbsp;  6. kill others if we have a chance </br>
 <ul>
   <li> head collision if longer
-  <li> secure a food and chase tail already reduce our snakes' space
+  <li> secure a food and chase tail already reduce other snakes' space
 </ul>
 &nbsp;  7. if no available move, chase tail until death </br>
