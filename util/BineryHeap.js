@@ -75,6 +75,7 @@ class BineryHeap {
             }
         }
     }
+
     bubbleUp(n) {
         // Look up the target element and its score.
         var length = this.content.length;
@@ -146,13 +147,13 @@ function manhattan(pos0, pos1) {
 }
 
 function heuristic(start, end, options) {
-
+    return manhattan(start, end);
 }
 
 function search(board, start, end) {
     board.cleanDirty();
     options = options || {};
-    var closest = options.closest || false;
+    var closest = false;
 
     var openHeap = getHeap();
     var closestNode = start; // set the start node to be the closest if required

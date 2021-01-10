@@ -3,10 +3,10 @@ class Point {
     constructor(x, y, weight) {
         this.x = x;
         this.y = y;
-        this.weight = weight;
+        // this.weight = weight;
         this.neighbors = [];
         this.f = 0;
-        this.g = 0;
+        this.g = weight;
         this.h = 0;
         this.visited = false;
         this.closed = false;
@@ -15,7 +15,7 @@ class Point {
 
     cleanNode() {
         this.f = 0;
-        this.g = 0;
+        this.g = SAFE;
         this.h = 0;
         this.visited = false;
         this.closed = false;
@@ -35,16 +35,20 @@ class Board {
         this.width = data.board.width;
         this.board = new Array(this.height).fill(SAFE).map(() => new Array(this.width).fill(SAFE));
         this.snakes = data.snakes.map(snake => new Snake(snake));
-        this.food = this.setFoods(data.food);
+        this.mySnake = this.snakes.filter(s => { s.id === data.you.id })
+        this.foods = this.setFoods(data.food);
         this.dirtyNodes = [];
+        this.foodEndPoint = new Point(1000, 1000, FOOD)
         // TODO: init board weight and food
     }
 
     getSnakeHead() {
-        snakeHeads = [];
-
-
+        snakeHeads = this.snakes.map(snake => snake.head);
         return snakeHeads;
+    }
+
+    setWeight() {
+
     }
 
     setFoods(food) {
@@ -58,6 +62,16 @@ class Board {
 
             foodPoints.push(foodPoint);
         }
+    }
+
+    setFoodEndPoints() {
+        const foodEndPoint = new Point(1000, 1000, FOOD);
+        foodEndPoint.neighbors = this.foods;
+        for (var i = 0; i < this.foods; i++) {
+            this.foods[i].neighbors.push(foodEndPoint);
+        }
+
+        return foodEndPoint;
     }
 
     setNeighbors(point, option) {
