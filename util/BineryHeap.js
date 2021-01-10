@@ -75,6 +75,7 @@ class BineryHeap {
             }
         }
     }
+
     bubbleUp(n) {
         // Look up the target element and its score.
         var length = this.content.length;
@@ -146,13 +147,13 @@ function manhattan(pos0, pos1) {
 }
 
 function heuristic(start, end, options) {
-
+    return manhattan(start, end);
 }
 
 function search(board, start, end) {
     board.cleanDirty();
     options = options || {};
-    var closest = options.closest || false;
+    var closest = false;
 
     var openHeap = getHeap();
     var closestNode = start; // set the start node to be the closest if required
@@ -180,10 +181,10 @@ function search(board, start, end) {
         for (var i = 0, il = neighbors.length; i < il; ++i) {
             var neighbor = neighbors[i];
 
-            if (neighbor.closed || neighbor.isWall()) {
-                // Not a valid node to process, skip to next neighbor.
-                continue;
-            }
+            // if (neighbor.closed || neighbor.isWall()) {
+            //     // Not a valid node to process, skip to next neighbor.
+            //     continue;
+            // }
 
             // The g score is the shortest distance from start to current node.
             // We need to check if the path we have arrived at this neighbor is the shortest one we have seen yet.

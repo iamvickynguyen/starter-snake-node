@@ -1,5 +1,6 @@
 module.exports = {
     SAFE: 0,
-    FOOD: 10,
+    ATTACKABLE: 10,
+    FOOD: 30,
     DANGER: 100
 };
