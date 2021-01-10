@@ -1,4 +1,5 @@
-const { SAFE, FOOD, DANGER } = require('./constants');
+const { SAFE, FOOD, ATTACKABLE, DANGER } = require('./constants');
+
 class Point {
     constructor(x, y, weight) {
         this.x = x;
@@ -34,26 +35,42 @@ class Board {
         this.height = data.board.height;
         this.width = data.board.width;
         this.board = new Array(this.height).fill(SAFE).map(() => new Array(this.width).fill(SAFE));
-        this.snakes = data.snakes.map(snake => new Snake(snake));
-        this.mySnake = this.snakes.filter(s => { s.id === data.you.id })
+        this.snakes = data.board.snakes.map(snake => new Snake(snake));
+        this.mySnake = new Snake(data.you);
         this.foods = this.setFoods(data.food);
         this.dirtyNodes = [];
-        this.foodEndPoint = new Point(1000, 1000, FOOD)
+        this.foodEndPoint = setFoodEndPoints();
         // TODO: init board weight and food
     }
 
-    getSnakeHead() {
+    getSnakeHeads() {
         snakeHeads = this.snakes.map(snake => snake.head);
         return snakeHeads;
     }
 
-    setWeight() {
+    getSnakeTails() {
+        return this.snakes.map(snake => snake.tail);
+    }
 
+    setWeightPoint(x, y, weight) {
+        this.board[x][y].weight = weight;
+    }
+
+    setWeightBoard() {
+        this.snakes.forEach(snake => {
+            snake.body.forEach(point => { this.setWeightPoint(point.x, point.y, DANGER) });
+        })
+
+        this.snake.filter(snake => {
+            snake.body.length < this.mySnake.body.length
+        }).forEach(snake => {
+            this.setWeightPoint(snake.head.x, snake.head.y, ATTACKABLE)
+        })
     }
 
     setFoods(food) {
         let foodPoints = []
-        let snakeHeads = this.getSnakeHead().filter(s => { s.id !== this.mySnake.id });
+        let snakeHeads = this.getSnakeHeads().filter(s => { s.id !== this.mySnake.id });
         for (var i = 0; i < food.length; i++) {
             let foodPoint = new Point(food[i].x, food[i].y, FOOD);
             for (var j = 0; j < snakeHeads; j++) {
@@ -112,7 +129,7 @@ class Snake {
     }
 
     toPointArray(arr) {
-        return arr.map((item) => new Point(item.x, item.y, constants.DANGER));
+        return arr.map((item) => new Point(item.x, item.y, DANGER));
     }
 }
 
