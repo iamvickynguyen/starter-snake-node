@@ -38,7 +38,8 @@ function handleMove(request, response) {
 
   var possibleMoves = ['up', 'down', 'left', 'right']
   var move = possibleMoves[Math.floor(Math.random() * possibleMoves.length)]
-  const board = new Board(data);
+  const board = new Board(gameData);
+  console.log("---- BOARD --------");
   console.log(board.board);
 
   console.log('MOVE: ' + move)
