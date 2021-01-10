@@ -39,6 +39,7 @@ class Board {
         this.mySnake = new Snake(data.you);
         this.foods = this.setFoods(data.board.food);
         this.dirtyNodes = [];
+        this.foodEndPoint = setFoodEndPoints();
         // TODO: init board weight and food
 
     }
@@ -61,7 +62,7 @@ class Board {
             snake.body.forEach(point => { this.setWeightPoint(point.x, point.y, DANGER) });
         })
 
-        this.snake.filter(snake => {
+        this.snakes.filter(snake => {
             snake.body.length < this.mySnake.body.length
         }).forEach(snake => {
             this.setWeightPoint(snake.head.x, snake.head.y, ATTACKABLE)
@@ -82,7 +83,15 @@ class Board {
         return foodPoints;
     }
 
+    setFoodEndPoints() {
+        const foodEndPoint = new Point(1000, 1000, FOOD);
+        foodEndPoint.neighbors = this.foods;
+        for (var i = 0; i < this.foods; i++) {
+            this.foods[i].neighbors.push(foodEndPoint);
+        }
 
+        return foodEndPoint;
+    }
 
     setNeighbors(point, option) {
         if (option === food) {
