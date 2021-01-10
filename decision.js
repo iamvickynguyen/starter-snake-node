@@ -6,4 +6,4 @@ function decision(data) {
     return 'up';
 }
 
-module.exports = { decision };
+module.exports.decision = decision
