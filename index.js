@@ -1,5 +1,6 @@
 const bodyParser = require('body-parser')
 const express = require('express')
+const { decision } = require('decision');
 
 const PORT = process.env.PORT || 3000
 
@@ -36,7 +37,8 @@ function handleMove(request, response) {
   var gameData = request.body
 
   var possibleMoves = ['up', 'down', 'left', 'right']
-  var move = possibleMoves[Math.floor(Math.random() * possibleMoves.length)]
+  // var move = possibleMoves[Math.floor(Math.random() * possibleMoves.length)]
+  var move = decision(gameData);
 
   console.log('MOVE: ' + move)
   response.status(200).send({
